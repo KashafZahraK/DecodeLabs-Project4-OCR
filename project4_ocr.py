@@ -1,18 +1,4 @@
-"""
-DecodeLabs — Project 4: Image or Text Recognition (Basic)
-Path 1: Optical Character Recognition (OCR)
 
-Pipeline:
-    1. Ingest raw image
-    2. Pre-process: Grayscale -> Gaussian Blur -> Adaptive Thresholding (Otsu) -> Deskew
-    3. Run pytesseract (Tesseract OCR engine) with per-word confidence scores
-    4. Filter output using an 80% confidence gate (the project's "Gatekeeper Rule")
-    5. Display results clearly: cleaned image, annotated image, extracted text
-
-Usage:
-    python3 project4_ocr.py path/to/image.png
-    python3 project4_ocr.py path/to/image.png --psm 6
-"""
 
 import argparse
 import sys
@@ -22,14 +8,9 @@ import pytesseract
 from pytesseract import Output
 
 # ----------------------------------------------------------------------------
-# Configuration
-# ----------------------------------------------------------------------------
-CONFIDENCE_THRESHOLD = 80.0  # Project 4's "Gatekeeper Rule": 80% minimum standard
-
-
-# ----------------------------------------------------------------------------
 # Step 1: Pre-processing (Requirement #2 — Pre-Processing Integrity)
 # ----------------------------------------------------------------------------
+
 def to_grayscale(image: np.ndarray) -> np.ndarray:
     """Collapse the 3D RGB matrix into a 1D intensity matrix."""
     return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
